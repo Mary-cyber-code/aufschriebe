@@ -35,43 +35,39 @@
         .page-footer { margin-top: auto; border-top: 1px solid #8E6B5A; padding-top: 8px; display: flex; justify-content: space-between; font-size: 11px; color: #8E6B5A; background: #ffffff; }
 
         /* ==========================================
-           URSPRÜNGLICHES CLEANES PORTAL-LAYOUT
+           CLEANES, DURCHGEHENDES BEIGE-DASHBOARD
            ========================================== */
-        .dashboard-wrapper { 
-            background: #ffffff; 
-            border: 1px solid #8E6B5A; 
-            border-radius: 16px; 
+        .dashboard, .sub-dashboard { 
             width: 100%; 
             max-width: 950px; 
-            padding: 50px; 
-            box-shadow: 0 4px 20px rgba(142,107,90,0.04); 
-            position: relative; 
+            padding: 20px; 
             text-align: center;
+            position: relative;
         }
         
         /* Das dezente, mittige Original-Pflänzchen */
-        .floral-header { margin-bottom: 10px; color: #8E6B5A; opacity: 0.8; }
+        .floral-header { margin-bottom: 15px; color: #8E6B5A; opacity: 0.8; }
 
-        .dashboard-wrapper h1 { border-bottom: none; font-size: 32px; font-weight: 300; letter-spacing: 4px; margin-top: 10px; margin-bottom: 5px; color: #8E6B5A; text-transform: uppercase; }
+        .dashboard h1 { border-bottom: none; font-size: 32px; font-weight: 300; letter-spacing: 4px; margin-top: 10px; margin-bottom: 5px; color: #8E6B5A; text-transform: uppercase; }
         .dashboard-subtitle { color: #8C4033; font-style: italic; font-size: 14px; margin-bottom: 40px; letter-spacing: 2px; text-transform: uppercase; }
         
-        /* Die von dir gewünschten klassischen Linien-Abtrennungen */
+        /* Klassische Linien-Abtrennungen auf beigem Grund */
         .section-title { color: #8E6B5A; font-size: 14px; margin-top: 45px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 3px; display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
-        .section-title::before, .section-title::after { content: ""; flex: 1; height: 1px; background-color: #8E6B5A; opacity: 0.4; }
+        .section-title::before, .section-title::after { content: ""; flex: 1; height: 1px; background-color: #8E6B5A; opacity: 0.3; }
         
         .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-bottom: 10px; }
         
-        /* Fächer-Karten */
-        .subject-card { background: #ffffff; border: 1px solid #8E6B5A; border-radius: 12px; padding: 30px 15px; box-shadow: 0 2px 8px rgba(142,107,90,0.02); cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; }
-        .subject-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(142,107,90,0.1); border-color: #C0A080; background-color: #fdfbf7; }
+        /* Weiße Fächer-Karten, die perfekt auf dem Beige poppen */
+        .subject-card { background: #ffffff; border: 1px solid #8E6B5A; border-radius: 12px; padding: 30px 15px; box-shadow: 0 2px 8px rgba(142,107,90,0.03); cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; }
+        .subject-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(142,107,90,0.08); border-color: #C0A080; background-color: #fdfbf7; }
         .subject-card h3 { margin: 0; color: #8E6B5A; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.25s; }
         .subject-card:hover h3 { color: #8C4033; }
         
         /* ==========================================
            FACH-ÜBERSICHTSSEITE (SUB-PAGE)
            ========================================== */
-        .sub-dashboard h2 { font-size: 24px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; text-align: center; margin-bottom: 35px; color: #8E6B5A; display: flex; align-items: center; justify-content: center; gap: 20px; }
-        .sub-dashboard h2::before, .sub-dashboard h2::after { content: ""; flex: 1; height: 1px; background-color: #8E6B5A; opacity: 0.4; }
+        .sub-dashboard h2 { font-size: 24px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; text-align: center; margin-bottom: 35px; color: #8E6B5A; display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
+        .sub-dashboard h2::before, .sub-dashboard h2::after { content: ""; flex: 1; height: 1px; background-color: #8E6B5A; opacity: 0.3; }
         
         .category-block { background: #ffffff; border: 1px solid #8E6B5A; border-radius: 10px; padding: 22px; margin-bottom: 25px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.01); }
         .category-block h3 { color: #8E6B5A; font-size: 13px; text-transform: uppercase; border-bottom: 1px dashed #C0A080; padding-bottom: 6px; margin-bottom: 15px; letter-spacing: 1px; }
@@ -83,10 +79,11 @@
         .topic-link { background: none; border: none; color: #8C4033; font-family: inherit; font-size: 14px; text-align: left; padding: 0; cursor: pointer; text-decoration: none; transition: all 0.2s; }
         .topic-link:hover { color: #C0A080; text-decoration: underline; padding-left: 3px; }
         
-        .no-topics-notice { color: #C0A080; font-style: italic; font-size: 14px; padding: 30px 20px; background: #faf6f0; border: 1px dashed #8E6B5A; border-radius: 10px; margin-top: 20px; line-height: 1.6; }
+        /* Harmonischer, cleaner Platzhalter */
+        .no-topics-notice { color: #C0A080; font-style: italic; font-size: 14px; padding: 30px 20px; background: #ffffff; border: 1px dashed #8E6B5A; border-radius: 10px; margin-top: 20px; line-height: 1.6; text-align: center; box-shadow: 0 2px 8px rgba(142,107,90,0.02); }
         
         /* Steuerungs-Buttons */
-        .btn-back { background-color: transparent; color: #8E6B5A; border: 1px solid #8E6B5A; padding: 9px 18px; border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; margin-bottom: 30px; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-back { background-color: transparent; color: #8E6B5A; border: 1px solid #8E6B5A; padding: 9px 18px; border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; margin-bottom: 20px; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; }
         .btn-back:hover { background-color: #8E6B5A; color: #ffffff; }
         .hidden { display: none !important; }
         .view-container { width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -94,7 +91,7 @@
 </head>
 <body>
 
-    <div id="dashboard" class="dashboard-wrapper no-print">
+    <div id="dashboard" class="dashboard no-print">
         
         <div class="floral-header">
             <svg width="60" height="45" viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -135,11 +132,11 @@
 
 
     <div id="subject-view" class="view-container hidden no-print">
-        <div style="width: 100%; max-width: 950px; text-align: left;">
+        <div style="width: 100%; max-width: 950px; text-align: left; padding: 0 20px;">
             <button class="btn-back" onclick="showDashboard()">← Zurück zu den Fächern</button>
         </div>
         
-        <div class="dashboard-wrapper sub-dashboard">
+        <div class="sub-dashboard">
             <h2 id="current-subject-title">Fachname</h2>
             <div id="category-container"></div>
         </div>
