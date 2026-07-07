@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Oberstufen-Zentralgehirn</title>
+    <style>
+        /* Modernes, cleanes Design (Keine externen Schriftarten = 100% DSGVO sicher!) */
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --accent-bio: #2f855a;
+            --accent-eng: #2b6cb0;
+            --accent-math: #c53030;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 10px 0 0 0;
+            color: #a0aec0;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .welcome-box {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            margin-bottom: 30px;
+            border-left: 5px solid #4a5568;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Fach-Farben */
+        .bio { border-top: 6px solid var(--accent-bio); }
+        .bio h2 { color: var(--accent-bio); }
+        
+        .eng { border-top: 6px solid var(--accent-eng); }
+        .eng h2 { color: var(--accent-eng); }
+
+        .math { border-top: 6px solid var(--accent-math); }
+        .math h2 { color: var(--accent-math); }
+
+        .card ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #edf2f7;
+            color: var(--text-main);
+        }
+
+        .card li:last-child {
+            border-bottom: none;
+        }
+
+        .card li span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🎓 Mein Oberstufen-Zentralgehirn</h1>
+        <p>Digitale Zusammenfassungen & Lernzettel für das Abitur</p>
+    </div>
+
+    <div class="container">
+        <div class="welcome-box">
+            <h3>Hi! 👋</h3>
+            <p>Hier sammle ich meine Aufschriebe zur Wiederholung vor den Klausuren. Du kannst die Themen einfach anklicken (sobald die Unterseiten fertig sind), um zu den Übersichten zu gelangen.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card bio">
+                <h2>🧬 Biologie LK</h2>
+                <ul>
+                    <li>Genetik <span>Zellzyklus, Replikation, Proteinbiosynthese</span></li>
+                    <li>Ökologie <span>Ökosysteme, Stoffkreisläufe</span></li>
+                    <li>Evolution <span>Artbildung, Selektionsfaktoren</span></li>
+                </ul>
+            </div>
+
+            <div class="card eng">
+                <h2>🇬🇧 Englisch LK</h2>
+                <ul>
+                    <li>The UK & US <span>Tradition and Change</span></li>
+                    <li>Postcolonialism <span>Voices from the Commonwealth</span></li>
+                    <li>Global Challenges <span>Climate & Technology</span></li>
+                </ul>
+            </div>
+
+            <div class="card math">
+                <h2>📐 Mathematik</h2>
+                <ul>
+                    <li>Analysis <span>Differential- & Integralrechnung</span></li>
+                    <li>Geometrie <span>Vektoren und Matrizen</span></li>
+                    <li>Stochastik <span>Wahrscheinlichkeitsrechnung</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
