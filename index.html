@@ -5,166 +5,217 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mein Oberstufen-Zentralgehirn</title>
     <style>
-        /* Modernes, cleanes Design (Keine externen Schriftarten = 100% DSGVO sicher!) */
-        :root {
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-main: #2d3748;
-            --text-muted: #718096;
-            --accent-bio: #2f855a;
-            --accent-eng: #2b6cb0;
-            --accent-math: #c53030;
+        /* UNIVERSAL RESET FOR CLEAN LAYOUT */
+        * { box-sizing: border-box; }
+        
+        body { 
+            background-color: #f4f1ea; /* Soft beige background */
+            margin: 0; 
+            padding: 40px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+        .dashboard-container {
+            width: 100%;
+            max-width: 1100px;
         }
 
-        .header {
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            color: white;
-            padding: 40px 20px;
+        /* HEADER AREA */
+        h1 { 
+            color: #8E6B5A; /* Matte brown */
+            font-size: 26px; 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            margin-top: 0; 
+            margin-bottom: 10px; 
+            padding-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #8C4033; /* Terracotta */
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            font-size: 15px;
+            margin-bottom: 40px;
+            font-style: italic;
         }
 
-        .header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-            font-weight: 700;
+        .divider {
+            border-bottom: 2px solid #8E6B5A;
+            width: 100%;
+            margin-bottom: 35px;
         }
 
-        .header p {
-            margin: 10px 0 0 0;
-            color: #a0aec0;
-            font-size: 1.1rem;
+        /* FLEXBOX GRID FOR SUBJECTS */
+        .subject-grid { 
+            display: flex; 
+            flex-wrap: wrap;
+            gap: 20px; 
+            justify-content: center; 
+            margin-bottom: 30px; 
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .welcome-box {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            margin-bottom: 30px;
-            border-left: 5px solid #4a5568;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        /* SUBJECT CARD STYLE */
+        .box { 
+            flex: 1; 
+            min-width: 300px;
+            max-width: 340px;
+            border: 1.5px solid #8E6B5A; 
+            border-radius: 8px; 
+            padding: 20px; 
+            background-color: #ffffff; 
+            box-shadow: 0 4px 10px rgba(142, 107, 90, 0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        .box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(142, 107, 90, 0.1);
         }
 
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.4rem;
+        h2 { 
+            color: #8E6B5A; 
+            font-size: 19px; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
+            border-bottom: 1px dashed #C0A080; 
+            padding-bottom: 5px; 
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
         }
 
-        /* Fach-Farben */
-        .bio { border-top: 6px solid var(--accent-bio); }
-        .bio h2 { color: var(--accent-bio); }
-        
-        .eng { border-top: 6px solid var(--accent-eng); }
-        .eng h2 { color: var(--accent-eng); }
+        .subject-badge {
+            font-size: 11px;
+            background-color: #fdfbf7;
+            border: 1px solid #C0A080;
+            color: #C0A080;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
 
-        .math { border-top: 6px solid var(--accent-math); }
-        .math h2 { color: var(--accent-math); }
-
-        .card ul {
+        /* TOPIC LISTS */
+        ul { 
+            margin: 5px 0; 
+            padding-left: 15px; 
             list-style-type: none;
-            padding: 0;
-            margin: 15px 0 0 0;
         }
 
-        .card li {
-            padding: 8px 0;
-            border-bottom: 1px solid #edf2f7;
-            color: var(--text-main);
+        li { 
+            color: #8C4033; 
+            font-size: 14px; 
+            line-height: 1.6; 
+            margin-bottom: 10px; 
+            position: relative;
         }
 
-        .card li:last-child {
-            border-bottom: none;
+        /* Echte Links zu deinen fertigen Lernzetteln */
+        li a {
+            color: #8C4033;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #C0A080;
+            transition: color 0.2s;
         }
 
-        .card li span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: block;
+        li a:hover {
+            color: #C0A080;
         }
 
-        @media (max-width: 600px) {
-            .header h1 { font-size: 1.8rem; }
-            .grid { grid-template-columns: 1fr; }
+        /* Statusanzeige für Themen, die noch kommen */
+        .coming-soon {
+            color: #C0A080; /* Sand beige */
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .coming-soon::before {
+            content: "• ";
+            color: #C0A080;
+        }
+
+        /* DASHBOARD FOOTER */
+        .page-footer { 
+            margin-top: 50px; 
+            border-top: 1px solid #8E6B5A; 
+            padding-top: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 12px; 
+            color: #8E6B5A; 
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>🎓 Mein Oberstufen-Zentralgehirn</h1>
-        <p>Digitale Zusammenfassungen & Lernzettel für das Abitur</p>
-    </div>
+    <div class="dashboard-container">
+        <h1>📚 Mein Oberstufen-Zentralgehirn</h1>
+        <div class="subtitle">Interaktive Übersicht & druckoptimierte Lernzettel für die Oberstufe</div>
+        <div class="divider"></div>
 
-    <div class="container">
-        <div class="welcome-box">
-            <h3>Hi! 👋</h3>
-            <p>Hier sammle ich meine Aufschriebe zur Wiederholung vor den Klausuren. Du kannst die Themen einfach anklicken (sobald die Unterseiten fertig sind), um zu den Übersichten zu gelangen.</p>
+        <div class="subject-grid">
+
+            <div class="box">
+                <h2>🧬 Biologie <span class="subject-badge">LK</span></h2>
+                <ul>
+                    <li><a href="bio_genetik.html">Genetik: Replikation & Proteinbiosynthese</a> 📄</li>
+                    <li class="coming-soon">Ökologie: Ökosysteme</li>
+                    <li class="coming-soon">Evolution & Artbildung</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h2>🇬🇧 Englisch <span class="subject-badge">LK</span></h2>
+                <ul>
+                    <li class="coming-soon">The UK & US: Tradition and Change</li>
+                    <li class="coming-soon">Postcolonialism & Commonwealth</li>
+                    <li class="coming-soon">Global Challenges</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h2>📐 Mathematik <span class="subject-badge">GK</span></h2>
+                <ul>
+                    <li class="coming-soon">Analysis: Differentialrechnung</li>
+                    <li class="coming-soon">Geometrie: Vektoren</li>
+                    <li class="coming-soon">Stochastik: Wahrscheinlichkeiten</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h2>✍️ Deutsch <span class="subject-badge">GK</span></h2>
+                <ul>
+                    <li class="coming-soon">Epochenübersicht & Literatur</li>
+                    <li class="coming-soon">Sachtextanalyse & Erörterung</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h2>⏳ Geschichte <span class="subject-badge">GK</span></h2>
+                <ul>
+                    <li class="coming-soon">Die Französische Revolution</li>
+                    <li class="coming-soon">Kaiserreich & Weimarer Republik</li>
+                </ul>
+            </div>
+
+            <div class="box">
+                <h2>⚡ Physik <span class="subject-badge">GK</span></h2>
+                <ul>
+                    <li class="coming-soon">Mechanik & Wellen</li>
+                    <li class="coming-soon">Quantenphysik</li>
+                </ul>
+            </div>
+
         </div>
 
-        <div class="grid">
-            <div class="card bio">
-                <h2>🧬 Biologie LK</h2>
-                <ul>
-                    <li>Genetik <span>Zellzyklus, Replikation, Proteinbiosynthese</span></li>
-                    <li>Ökologie <span>Ökosysteme, Stoffkreisläufe</span></li>
-                    <li>Evolution <span>Artbildung, Selektionsfaktoren</span></li>
-                </ul>
-            </div>
-
-            <div class="card eng">
-                <h2>🇬🇧 Englisch LK</h2>
-                <ul>
-                    <li>The UK & US <span>Tradition and Change</span></li>
-                    <li>Postcolonialism <span>Voices from the Commonwealth</span></li>
-                    <li>Global Challenges <span>Climate & Technology</span></li>
-                </ul>
-            </div>
-
-            <div class="card math">
-                <h2>📐 Mathematik</h2>
-                <ul>
-                    <li>Analysis <span>Differential- & Integralrechnung</span></li>
-                    <li>Geometrie <span>Vektoren und Matrizen</span></li>
-                    <li>Stochastik <span>Wahrscheinlichkeitsrechnung</span></li>
-                </ul>
-            </div>
+        <div class="page-footer">
+            <span>Klasse 10 → Kursstufe</span>
+            <span>Gemeinsam durchs Abi • mary-cyber-code</span>
         </div>
     </div>
 
