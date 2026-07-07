@@ -3,221 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mein Oberstufen-Zentralgehirn</title>
+    <title>Mein Oberstufen-Lernportal</title>
     <style>
-        /* UNIVERSAL RESET FOR CLEAN LAYOUT */
+        /* ==========================================
+           DEINE EXISTIERENDEN UND STRICKTEN DESIGN-REGELN
+           ========================================== */
         * { box-sizing: border-box; }
+        @page { size: A4; margin: 0; }
         
-        body { 
-            background-color: #f4f1ea; /* Soft beige background */
-            margin: 0; 
-            padding: 40px 20px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
+        @media screen {
+            body { background-color: #f4f1ea; padding: 40px 0; display: flex; flex-direction: column; align-items: center; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; }
+            .page { background: #ffffff; width: 210mm; height: 297mm; padding: 20mm; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; }
         }
+        @media print {
+            body { background: #ffffff; margin: 0; padding: 0; }
+            .page { width: 210mm; height: 297mm; page-break-after: always; page-break-inside: avoid; padding: 20mm; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+            .no-print { display: none !important; } /* Versteckt Dashboard und Buttons beim Drucken */
+        }
+        
+        h1 { color: #8E6B5A; font-size: 24px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0; margin-bottom: 25px; border-bottom: 2px solid #8E6B5A; padding-bottom: 8px; }
+        h2 { color: #8E6B5A; font-size: 18px; margin-top: 20px; margin-bottom: 12px; border-bottom: 1px dashed #C0A080; padding-bottom: 3px; }
+        h3 { color: #8E6B5A; font-size: 15px; margin: 0 0 8px 0; }
+        p, li { color: #8C4033; font-size: 13.5px; line-height: 1.5; margin-top: 0; margin-bottom: 8px; }
+        ul { margin: 5px 0; padding-left: 18px; }
+        .grid-2 { display: flex; gap: 15px; justify-content: space-between; margin-bottom: 15px; }
+        .grid-3 { display: flex; gap: 15px; justify-content: space-between; margin-bottom: 15px; }
+        .box { flex: 1; border: 1.5px solid #8E6B5A; border-radius: 6px; padding: 12px; background-color: #ffffff; }
+        .accent-box { background-color: #fdfbf7; border-left: 4px solid #C0A080; padding: 10px 12px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+        .highlight { color: #C0A080; font-weight: bold; }
+        .formula-block { font-family: 'Courier New', monospace; font-weight: bold; text-align: center; background: #faf6f0; padding: 8px; border: 1px dashed #8E6B5A; border-radius: 4px; margin: 10px 0; color: #8C4033; }
+        .page-footer { margin-top: auto; border-top: 1px solid #8E6B5A; padding-top: 8px; display: flex; justify-content: space-between; font-size: 11px; color: #8E6B5A; background: #ffffff; }
 
-        .dashboard-container {
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        /* HEADER AREA */
-        h1 { 
-            color: #8E6B5A; /* Matte brown */
-            font-size: 26px; 
-            text-align: center; 
-            text-transform: uppercase; 
-            letter-spacing: 1.5px; 
-            margin-top: 0; 
-            margin-bottom: 10px; 
-            padding-bottom: 12px;
-        }
-
-        .subtitle {
-            color: #8C4033; /* Terracotta */
-            text-align: center;
-            font-size: 15px;
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-
-        .divider {
-            border-bottom: 2px solid #8E6B5A;
-            width: 100%;
-            margin-bottom: 35px;
-        }
-
-        /* FLEXBOX GRID FOR SUBJECTS */
-        .subject-grid { 
-            display: flex; 
-            flex-wrap: wrap;
-            gap: 20px; 
-            justify-content: center; 
-            margin-bottom: 30px; 
-        }
-
-        /* SUBJECT CARD STYLE */
-        .box { 
-            flex: 1; 
-            min-width: 300px;
-            max-width: 340px;
-            border: 1.5px solid #8E6B5A; 
-            border-radius: 8px; 
-            padding: 20px; 
-            background-color: #ffffff; 
-            box-shadow: 0 4px 10px rgba(142, 107, 90, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(142, 107, 90, 0.1);
-        }
-
-        h2 { 
-            color: #8E6B5A; 
-            font-size: 19px; 
-            margin-top: 0; 
-            margin-bottom: 15px; 
-            border-bottom: 1px dashed #C0A080; 
-            padding-bottom: 5px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .subject-badge {
-            font-size: 11px;
-            background-color: #fdfbf7;
-            border: 1px solid #C0A080;
-            color: #C0A080;
-            padding: 2px 6px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        /* TOPIC LISTS */
-        ul { 
-            margin: 5px 0; 
-            padding-left: 15px; 
-            list-style-type: none;
-        }
-
-        li { 
-            color: #8C4033; 
-            font-size: 14px; 
-            line-height: 1.6; 
-            margin-bottom: 10px; 
-            position: relative;
-        }
-
-        /* Echte Links zu deinen fertigen Lernzetteln */
-        li a {
-            color: #8C4033;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px solid #C0A080;
-            transition: color 0.2s;
-        }
-
-        li a:hover {
-            color: #C0A080;
-        }
-
-        /* Statusanzeige für Themen, die noch kommen */
-        .coming-soon {
-            color: #C0A080; /* Sand beige */
-            font-size: 13px;
-            font-style: italic;
-        }
-
-        .coming-soon::before {
-            content: "• ";
-            color: #C0A080;
-        }
-
-        /* DASHBOARD FOOTER */
-        .page-footer { 
-            margin-top: 50px; 
-            border-top: 1px solid #8E6B5A; 
-            padding-top: 15px; 
-            display: flex; 
-            justify-content: space-between; 
-            font-size: 12px; 
-            color: #8E6B5A; 
-            width: 100%;
-        }
+        /* ==========================================
+           ZUSÄTZLICHES DESIGN FÜR DAS DASHBOARD (PASSEND ZUM STYLE)
+           ========================================== */
+        .dashboard { width: 100%; max-width: 900px; padding: 0 20px; }
+        .dashboard h1 { border-bottom: 3px double #8E6B5A; padding-bottom: 15px; font-size: 28px; }
+        .section-title { color: #8E6B5A; font-size: 20px; margin-top: 30px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #C0A080; padding-bottom: 5px; }
+        .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        
+        .subject-card { background: #ffffff; border: 1.5px solid #8E6B5A; border-radius: 8px; padding: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s; }
+        .subject-card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(142,107,90,0.15); }
+        .subject-card h2 { margin-top: 0; border-bottom: 1px solid #8E6B5A; padding-bottom: 5px; font-size: 18px; }
+        
+        .topic-link-list { list-style: none; padding: 0; margin: 10px 0 0 0; }
+        .topic-link-list li { margin-bottom: 6px; }
+        .topic-btn { background: none; border: none; color: #8C4033; font-family: inherit; font-size: 13.5px; text-align: left; padding: 0; cursor: pointer; text-decoration: underline; }
+        .topic-btn:hover { color: #C0A080; font-weight: bold; }
+        
+        .empty-text { color: #C0A080; font-style: italic; font-size: 12px; margin: 5px 0 0 0; }
+        
+        .btn-back { background-color: #8E6B5A; color: #ffffff; border: none; padding: 10px 20px; border-radius: 4px; font-family: inherit; font-size: 14px; cursor: pointer; margin-bottom: 25px; transition: background-color 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-back:hover { background-color: #8C4033; }
+        
+        /* Hilfsklassen zum Ein- und Ausblenden via JavaScript */
+        .hidden { display: none !important; }
+        .view-container { width: 100%; display: flex; flex-direction: column; align-items: center; }
     </style>
 </head>
 <body>
 
-    <div class="dashboard-container">
-        <h1>📚 Mein Oberstufen-Zentralgehirn</h1>
-        <div class="subtitle">Interaktive Übersicht & druckoptimierte Lernzettel für die Oberstufe</div>
-        <div class="divider"></div>
+    <div id="dashboard" class="dashboard no-print">
+        <h1>Mein Oberstufen-Lernportal</h1>
+        <p style="text-align: center; margin-bottom: 30px;">Klicke auf ein Thema, um den ausdruckbaren Lernzettel zu öffnen.</p>
 
+        <div class="section-title">Leistungskurse (LK)</div>
         <div class="subject-grid">
-
-            <div class="box">
-                <h2>🧬 Biologie <span class="subject-badge">LK</span></h2>
-                <ul>
-                    <li><a href="bio_genetik.html">Genetik: Replikation & Proteinbiosynthese</a> 📄</li>
-                    <li class="coming-soon">Ökologie: Ökosysteme</li>
-                    <li class="coming-soon">Evolution & Artbildung</li>
+            <div class="subject-card">
+                <h2>Mathematik</h2>
+                <ul class="topic-link-list">
+                    <li><button class="topic-btn" onclick="showTopic('mathe-differential')">→ Differentialrechnung</button></li>
                 </ul>
             </div>
-
-            <div class="box">
-                <h2>🇬🇧 Englisch <span class="subject-badge">LK</span></h2>
-                <ul>
-                    <li class="coming-soon">The UK & US: Tradition and Change</li>
-                    <li class="coming-soon">Postcolonialism & Commonwealth</li>
-                    <li class="coming-soon">Global Challenges</li>
+            <div class="subject-card">
+                <h2>Chemie</h2>
+                <ul class="topic-link-list">
+                    <li><button class="topic-btn" onclick="showTopic('chemie-saeure')">→ Säure-Base-Gleichgewichte</button></li>
                 </ul>
             </div>
-
-            <div class="box">
-                <h2>📐 Mathematik <span class="subject-badge">GK</span></h2>
-                <ul>
-                    <li class="coming-soon">Analysis: Differentialrechnung</li>
-                    <li class="coming-soon">Geometrie: Vektoren</li>
-                    <li class="coming-soon">Stochastik: Wahrscheinlichkeiten</li>
-                </ul>
+            <div class="subject-card">
+                <h2>Gemeinschaftskunde</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
             </div>
-
-            <div class="box">
-                <h2>✍️ Deutsch <span class="subject-badge">GK</span></h2>
-                <ul>
-                    <li class="coming-soon">Epochenübersicht & Literatur</li>
-                    <li class="coming-soon">Sachtextanalyse & Erörterung</li>
-                </ul>
-            </div>
-
-            <div class="box">
-                <h2>⏳ Geschichte <span class="subject-badge">GK</span></h2>
-                <ul>
-                    <li class="coming-soon">Die Französische Revolution</li>
-                    <li class="coming-soon">Kaiserreich & Weimarer Republik</li>
-                </ul>
-            </div>
-
-            <div class="box">
-                <h2>⚡ Physik <span class="subject-badge">GK</span></h2>
-                <ul>
-                    <li class="coming-soon">Mechanik & Wellen</li>
-                    <li class="coming-soon">Quantenphysik</li>
-                </ul>
-            </div>
-
         </div>
 
-        <div class="page-footer">
-            <span>Klasse 10 → Kursstufe</span>
-            <span>Gemeinsam durchs Abi • mary-cyber-code</span>
+        <div class="section-title">Grundkurse (GK)</div>
+        <div class="subject-grid">
+            <div class="subject-card">
+                <h2>Deutsch</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+            <div class="subject-card">
+                <h2>Englisch</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+            <div class="subject-card">
+                <h2>Biologie</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+            <div class="subject-card">
+                <h2>Kunst</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+            <div class="subject-card">
+                <h2>Sport</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+            <div class="subject-card">
+                <h2>Religion</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+            <div class="subject-card">
+                <h2>Geschichte</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+            <div class="subject-card">
+                <h2>Geographie</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
+        </div>
+
+        <div class="section-title">Orchidenfach</div>
+        <div class="subject-grid">
+            <div class="subject-card">
+                <h2>Psychologie</h2>
+                <p class="empty-text">Noch keine Aufschriebe vorhanden.</p>
+            </div>
         </div>
     </div>
 
+
+    <div id="lernzettel-view" class="view-container hidden">
+        <div style="width: 210mm;" class="no-print">
+            <button class="btn-back" onclick="showDashboard()">← Zurück zur Übersicht</button>
+        </div>
+
+        <div id="lernzettel-content">
+            
+            <div id="mathe-differential" class="topic-data hidden">
+                <div class="page">
+                    <h1>Mathematik: Differentialrechnung</h1>
+                    
+                    <h2>1. Der Ableitungsbegriff</h2>
+                    <p>Die Ableitung einer Funktion an einer Stelle beschreibt die <span class="highlight">lokale Änderungsrate</span> bzw. die Steigung der Tangente an den Graphen der Funktion in diesem Punkt.</p>
+                    
+                    <div class="accent-box">
+                        <h3>Definition via Differentialquotient:</h3>
+                        <p>Man nähert sich der Tangentensteigung durch eine Sekantensteigung an. Die Formel lautet:</p>
+                        <div class="formula-block">f'(x) = lim (h -> 0) [f(x + h) - f(x)] / h</div>
+                    </div>
+
+                    <h2>2. Wichtige Ableitungsregeln</h2>
+                    <div class="grid-2">
+                        <div class="box">
+                            <h3>Potenzregel</h3>
+                            <p>Aus <span class="highlight">f(x) = xⁿ</span> wird:</p>
+                            <div class="formula-block">f'(x) = n · xⁿ⁻¹</div>
+                        </div>
+                        <div class="box">
+                            <h3>Faktorregel</h3>
+                            <p>Ein konstanter Faktor bleibt beim Ableiten erhalten:</p>
+                            <div class="formula-block">g(x) = c · f(x) → g'(x) = c · f'(x)</div>
+                        </div>
+                    </div>
+
+                    <div class="page-footer">
+                        <span>Fach: Mathematik (LK)</span>
+                        <span>Thema: Differentialrechnung</span>
+                        <span>Seite 1</span>
+                    </div>
+                </div>
+                
+                <div class="page">
+                    <h1>Mathematik: Differentialrechnung</h1>
+                    
+                    <h2>3. Kurvendiskussion</h2>
+                    <p>Mithilfe der Ableitungen können wir charakteristische Punkte eines Graphen bestimmen:</p>
+                    
+                    <ul>
+                        <li><span class="highlight">Notwendige Bedingung für Extrempunkte:</span> f'(x) = 0</li>
+                        <li><span class="highlight">Hinreichende Bedingung für ein Maximum:</span> f'(x) = 0 und f''(x) < 0</li>
+                        <li><span class="highlight">Hinreichende Bedingung für ein Minimum:</span> f'(x) = 0 und f''(x) > 0</li>
+                    </ul>
+
+                    <div class="page-footer">
+                        <span>Fach: Mathematik (LK)</span>
+                        <span>Thema: Differentialrechnung</span>
+                        <span>Seite 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chemie-saeure" class="topic-data hidden">
+                <div class="page">
+                    <h1>Chemie: Säure-Base-Gleichgewichte</h1>
+                    
+                    <h2>1. Definition nach Brønsted</h2>
+                    <p>Säure-Base-Reaktionen sind im Kern <span class="highlight">Protonenübertragungsreaktionen</span> (Protolyse).</p>
+                    
+                    <div class="grid-2">
+                        <div class="box">
+                            <h3>Säure (Protonendonator)</h3>
+                            <p>Gibt Protonen ($H^+$-Ionen) ab. Beispiel: Salzsäure ($HCl$).</p>
+                        </div>
+                        <div class="box">
+                            <h3>Base (Protonenakzeptor)</h3>
+                            <p>Nimmt Protonen ($H^+$-Ionen) auf. Beispiel: Ammoniak ($NH₃$).</p>
+                        </div>
+                    </div>
+
+                    <h2>2. Der pH-Wert</h2>
+                    <p>Der pH-Wert ist der negative Dekadische Logarithmus der Oxoniumionen-Konzentration.</p>
+                    <div class="formula-block">pH = -log₁₀[H₃O⁺]</div>
+
+                    <div class="page-footer">
+                        <span>Fach: Chemie (LK)</span>
+                        <span>Thema: Säure-Base</span>
+                        <span>Seite 1</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Funktion: Zeigt einen bestimmten Lernzettel an
+        function showTopic(topicId) {
+            // 1. Dashboard verstecken
+            document.getElementById('dashboard').classList.add('hidden');
+            
+            // 2. Lernzettel-Ansicht aktivieren
+            document.getElementById('lernzettel-view').classList.remove('hidden');
+            
+            // 3. Alle eventuell vorher geöffneten Lernzettel-Inhalte verstecken
+            const allTopics = document.querySelectorAll('.topic-data');
+            allTopics.forEach(topic => topic.classList.add('hidden'));
+            
+            // 4. Exakt den Lernzettel anzeigen, der geklickt wurde
+            document.getElementById(topicId).classList.remove('hidden');
+            
+            // Fenster nach oben scrollen
+            window.scrollTo(0, 0);
+        }
+
+        // Funktion: Bringt den User zurück zum Dashboard
+        function showDashboard() {
+            // 1. Lernzettel-Ansicht verstecken
+            document.getElementById('lernzettel-view').classList.add('hidden');
+            
+            // 2. Dashboard wieder einblenden
+            document.getElementById('dashboard').classList.remove('hidden');
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
