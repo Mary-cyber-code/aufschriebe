@@ -113,50 +113,55 @@
         let activeSubjectKey = "";
 
         function showSubject(subjectKey) {
-            activeSubjectKey = subjectKey;
-            const subject = subjectData[subjectKey];
+    // SICHERHEITS-CHECK: Überprüft, ob die Datei geladen wurde
+    if (typeof subjectData === 'undefined') {
+        alert("Fehler: Die Datei 'faecher-daten.js' konnte nicht geladen werden! Überprüfe, ob sie im richtigen Ordner liegt.");
+        return;
+    }
+
+    activeSubjectKey = subjectKey;
+    const subject = subjectData[subjectKey];
+    
+    document.getElementById('dashboard').classList.add('hidden');
+    document.getElementById('lernzettel-view').classList.add('hidden');
+    document.getElementById('subject-view').classList.remove('hidden');
+    
+    document.getElementById('current-subject-title').innerText = subject.title;
+    
+    const container = document.getElementById('category-container');
+    container.innerHTML = ""; 
+    
+    const categoryKeys = Object.entries(subject.categories);
+    
+    if (categoryKeys.length === 0) {
+        container.innerHTML = `
+            <div class="no-topics-notice">
+                Für das Fach <strong>${subject.title}</strong> wurden noch keine Abschnitte oder Lernzettel angelegt.<br>
+                <span style="font-size:12px; display:inline-block; margin-top:8px; color:#8E6B5A; font-style: normal;">
+                    Sobald du soweit bist, kannst du Kategorien und Themen ganz flexibel in der Datei "faecher-daten.js" ergänzen.
+                </span>
+            </div>`;
+    } else {
+        for (const [catName, topics] of categoryKeys) {
+            const block = document.createElement('div');
+            block.className = 'category-block';
             
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('lernzettel-view').classList.add('hidden');
-            document.getElementById('subject-view').classList.remove('hidden');
-            
-            document.getElementById('current-subject-title').innerText = subject.title;
-            
-            const container = document.getElementById('category-container');
-            container.innerHTML = ""; 
-            
-            const categoryKeys = Object.entries(subject.categories);
-            
-            if (categoryKeys.length === 0) {
-                container.innerHTML = `
-                    <div class="no-topics-notice">
-                        Für das Fach <strong>${subject.title}</strong> wurden noch keine Abschnitte oder Lernzettel angelegt.<br>
-                        <span style="font-size:12px; display:inline-block; margin-top:8px; color:#8E6B5A; font-style: normal;">
-                            Sobald du soweit bist, kannst du Kategorien und Themen ganz flexibel in der Datei "faecher-daten.js" ergänzen.
-                        </span>
-                    </div>`;
+            let topicsHTML = `<ul class="topic-list">`;
+            if (topics.length === 0) {
+                topicsHTML += `<li style="color:#C0A080; font-style:italic; font-size:13px;">Noch keine Themen in diesem Bereich.</li>`;
             } else {
-                for (const [catName, topics] of categoryKeys) {
-                    const block = document.createElement('div');
-                    block.className = 'category-block';
-                    
-                    let topicsHTML = `<ul class="topic-list">`;
-                    if (topics.length === 0) {
-                        topicsHTML += `<li style="color:#C0A080; font-style:italic; font-size:13px;">Noch keine Themen in diesem Bereich.</li>`;
-                    } else {
-                        topics.forEach(topic => {
-                            // Übergibt den Pfad zur HTML-Datei statt einer ID
-                            topicsHTML += `<li><button class="topic-link" onclick="showTopic('${topic.path}')">${topic.name}</button></li>`;
-                        });
-                    }
-                    topicsHTML += `</ul>`;
-                    
-                    block.innerHTML = `<h3>${catName}</h3>${topicsHTML}`;
-                    container.appendChild(block);
-                }
+                topics.forEach(topic => {
+                    topicsHTML += `<li><button class="topic-link" onclick="showTopic('${topic.path}')">${topic.name}</button></li>`;
+                });
             }
-            window.scrollTo(0, 0);
+            topicsHTML += `</ul>`;
+            
+            block.innerHTML = `<h3>${catName}</h3>${topicsHTML}`;
+            container.appendChild(block);
         }
+    }
+    window.scrollTo(0, 0);
+}
 
         function showDashboard() {
             document.getElementById('subject-view').classList.add('hidden');
