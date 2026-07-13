@@ -5,42 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oberstufen-Aufschriebe</title>
     <style>
-        /* [Dein bestehendes, wunderschönes CSS bleibt hier exakt gleich!] */
         * { box-sizing: border-box; }
-        body { background-color: #f4f1ea; padding: 40px 0; display: flex; flex-direction: column; align-items: center; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; min-height: 100vh; }
+        
+        /* Das neue, kühle Hintergrund-Beige */
+        body { background-color: #EFECE6; padding: 40px 0; display: flex; flex-direction: column; align-items: center; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; min-height: 100vh; }
         
         .dashboard, .sub-dashboard { width: 100%; max-width: 950px; padding: 20px; text-align: center; position: relative; }
-        .floral-header { margin-bottom: 15px; color: #8E6B5A; opacity: 0.8; }
-        .dashboard h1 { border-bottom: none; font-size: 32px; font-weight: 300; letter-spacing: 4px; margin-top: 10px; margin-bottom: 5px; color: #8E6B5A; text-transform: uppercase; }
-        .dashboard-subtitle { color: #8C4033; font-style: italic; font-size: 14px; margin-bottom: 40px; letter-spacing: 2px; text-transform: uppercase; }
-        .section-title { color: #8E6B5A; font-size: 14px; margin-top: 45px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 3px; display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
-        .section-title::before, .section-title::after { content: ""; flex: 1; height: 1px; background-color: #8E6B5A; opacity: 0.3; }
+        
+        /* Neues Taupe/Graubraun für das Logo */
+        .floral-header { margin-bottom: 15px; color: #73675C; opacity: 0.9; }
+        
+        /* Überschriften in Taupe (#73675C), Untertitel in Aschbraun (#3A342F) */
+        .dashboard h1 { border-bottom: none; font-size: 32px; font-weight: 300; letter-spacing: 4px; margin-top: 10px; margin-bottom: 5px; color: #73675C; text-transform: uppercase; }
+        .dashboard-subtitle { color: #3A342F; font-style: italic; font-size: 14px; margin-bottom: 40px; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .section-title { color: #73675C; font-size: 14px; margin-top: 45px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 3px; display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
+        .section-title::before, .section-title::after { content: ""; flex: 1; height: 1px; background-color: #73675C; opacity: 0.3; }
+        
         .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-bottom: 10px; }
-        .subject-card { background: #ffffff; border: 1px solid #8E6B5A; border-radius: 12px; padding: 30px 15px; box-shadow: 0 2px 8px rgba(142,107,90,0.03); cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; }
-        .subject-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(142,107,90,0.08); border-color: #C0A080; background-color: #fdfbf7; }
-        .subject-card h3 { margin: 0; color: #8E6B5A; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
-        .sub-dashboard h2 { font-size: 24px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; text-align: center; margin-bottom: 35px; color: #8E6B5A; display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
-        .sub-dashboard h2::before, .sub-dashboard h2::after { content: ""; flex: 1; height: 1px; background-color: #8E6B5A; opacity: 0.3; }
-        .category-block { background: #ffffff; border: 1px solid #8E6B5A; border-radius: 10px; padding: 22px; margin-bottom: 25px; text-align: left; }
-        .category-block h3 { color: #8E6B5A; font-size: 13px; text-transform: uppercase; border-bottom: 1px dashed #C0A080; padding-bottom: 6px; margin-bottom: 15px; letter-spacing: 1px; }
+        
+        /* Karten-Design angepasst */
+        .subject-card { background: #ffffff; border: 1px solid #73675C; border-radius: 12px; padding: 30px 15px; box-shadow: 0 2px 8px rgba(115,103,92,0.03); cursor: pointer; transition: all 0.25s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 110px; }
+        .subject-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(115,103,92,0.1); border-color: #A39687; background-color: #F5F3EF; }
+        .subject-card h3 { margin: 0; color: #73675C; font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.25s; }
+        .subject-card:hover h3 { color: #3A342F; }
+        
+        /* Unterseiten-Design */
+        .sub-dashboard h2 { font-size: 24px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; text-align: center; margin-bottom: 35px; color: #73675C; display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; }
+        .sub-dashboard h2::before, .sub-dashboard h2::after { content: ""; flex: 1; height: 1px; background-color: #73675C; opacity: 0.3; }
+        
+        .category-block { background: #ffffff; border: 1px solid #73675C; border-radius: 10px; padding: 22px; margin-bottom: 25px; text-align: left; }
+        .category-block h3 { color: #73675C; font-size: 13px; text-transform: uppercase; border-bottom: 1px dashed #A39687; padding-bottom: 6px; margin-bottom: 15px; letter-spacing: 1px; }
+        
         .topic-list { list-style: none; padding: 0; margin: 0; }
         .topic-list li { margin-bottom: 10px; display: flex; align-items: center; }
-        .topic-list li::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 10px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C0A080' stroke-width='2'%3E%3Cpath d='M12 2C12 2 14.5 7 18 9.5C21.5 12 22 16 22 16C19 16 15.5 14.5 13 11C11.5 13.5 8.5 15.5 5.5 15.5C2.5 15.5 2 12 5.5 9.5C9 7 12 2 12 2Z'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; opacity: 0.8; }
-        .topic-link { background: none; border: none; color: #8C4033; font-family: inherit; font-size: 14px; text-align: left; padding: 0; cursor: pointer; text-decoration: none; transition: all 0.2s; }
-        .topic-link:hover { color: #C0A080; text-decoration: underline; padding-left: 3px; }
-        .no-topics-notice { color: #C0A080; font-style: italic; font-size: 14px; padding: 30px 20px; background: #ffffff; border: 1px dashed #8E6B5A; border-radius: 10px; margin-top: 20px; text-align: center; }
-        .btn-back { background-color: transparent; color: #8E6B5A; border: 1px solid #8E6B5A; padding: 9px 18px; border-radius: 6px; font-family: inherit; font-size: 12px; cursor: pointer; margin-bottom: 20px; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-back:hover { background-color: #8E6B5A; color: #ffffff; }
+        /* Das kleine Icon in der Liste wurde auf #A39687 umgefärbt */
+        .topic-list li::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 10px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A39687' stroke-width='2'%3E%3Cpath d='M12 2C12 2 14.5 7 18 9.5C21.5 12 22 16 22 16C19 16 15.5 14.5 13 11C11.5 13.5 8.5 15.5 5.5 15.5C2.5 15.5 2 12 5.5 9.5C9 7 12 2 12 2Z'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; opacity: 0.8; }
         
-        /* Button für den perfekten A4-Druck */
-        .btn-print { background-color: #8E6B5A; color: white; border: none; margin-left: 10px; }
-        .btn-print:hover { background-color: #8C4033; }
+        .topic-link { background: none; border: none; color: #3A342F; font-family: inherit; font-size: 14px; text-align: left; padding: 0; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+        .topic-link:hover { color: #A39687; text-decoration: underline; padding-left: 3px; }
+        
+        .no-topics-notice { color: #A39687; font-style: italic; font-size: 14px; padding: 30px 20px; background: #ffffff; border: 1px dashed #73675C; border-radius: 10px; margin-top: 20px; text-align: center; }
+        
+        /* Buttons */
+        .btn-back { background-color: transparent; color: #73675C; border: 1px solid #73675C; padding: 9px 18px; border-radius: 30px; font-family: inherit; font-size: 12px; font-weight: bold; cursor: pointer; margin-bottom: 20px; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-back:hover { background-color: #73675C; color: #ffffff; }
+        
+        .btn-print { background-color: #73675C; color: white; border: none; margin-left: 10px; }
+        .btn-print:hover { background-color: #3A342F; }
         
         .hidden { display: none !important; }
         .view-container { width: 100%; display: flex; flex-direction: column; align-items: center; }
-
-        /* Styling für das adaptive Lernzettel-Fenster */
-        .iframe-container { width: 100%; max-width: 1000px; height: 85vh; background: transparent; display: flex; justify-content: center; }
+        .iframe-container { width: 100%; max-width: 1100px; height: 85vh; background: transparent; display: flex; justify-content: center; }
         iframe { width: 100%; height: 100%; border: none; border-radius: 4px; }
     </style>
 </head>
@@ -51,9 +67,10 @@
         <div class="floral-header">
             <svg width="60" height="45" viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="1.2">
                 <path d="M50,75 C50,45 30,25 15,35 M50,60 C55,40 75,25 85,40 M50,75 C52,40 50,15 40,5" />
-                <path d="M15,35 C10,25 25,15 30,25 C35,35 20,40 15,35 Z" fill="#faf6f0" />
-                <path d="M85,40 C90,30 75,20 70,30 C65,40 80,45 85,40 Z" fill="#faf6f0" />
-                <path d="M40,5 C30,-2 25,10 35,15 C45,20 45,10 40,5 Z" fill="#faf6f0" />
+                <!-- Blüten-Füllung in zartem Beige (#F5F3EF) passend zum Hintergrund -->
+                <path d="M15,35 C10,25 25,15 30,25 C35,35 20,40 15,35 Z" fill="#F5F3EF" />
+                <path d="M85,40 C90,30 75,20 70,30 C65,40 80,45 85,40 Z" fill="#F5F3EF" />
+                <path d="M40,5 C30,-2 25,10 35,15 C45,20 45,10 40,5 Z" fill="#F5F3EF" />
             </svg>
         </div>
         <h1>Oberstufen-Aufschriebe</h1>
@@ -102,66 +119,65 @@
             <button class="btn-back btn-print" onclick="printLernzettel()">🖨️ Lernzettel drucken / als PDF</button>
         </div>
         <div class="iframe-container" id="lernzettel-content">
-            <!-- Das Iframe wird dynamisch per JS befüllt -->
+            <!-- Das Iframe wird dynamisch befüllt -->
         </div>
     </div>
 
-    <!-- HIER BINDEN WIR DEINE EXTERNE DATEI EIN -->
+    <!-- DATEN EINBINDEN -->
     <script src="faecher-daten.js"></script>
 
     <script>
         let activeSubjectKey = "";
 
         function showSubject(subjectKey) {
-    // SICHERHEITS-CHECK: Überprüft, ob die Datei geladen wurde
-    if (typeof subjectData === 'undefined') {
-        alert("Fehler: Die Datei 'faecher-daten.js' konnte nicht geladen werden! Überprüfe, ob sie im richtigen Ordner liegt.");
-        return;
-    }
-
-    activeSubjectKey = subjectKey;
-    const subject = subjectData[subjectKey];
-    
-    document.getElementById('dashboard').classList.add('hidden');
-    document.getElementById('lernzettel-view').classList.add('hidden');
-    document.getElementById('subject-view').classList.remove('hidden');
-    
-    document.getElementById('current-subject-title').innerText = subject.title;
-    
-    const container = document.getElementById('category-container');
-    container.innerHTML = ""; 
-    
-    const categoryKeys = Object.entries(subject.categories);
-    
-    if (categoryKeys.length === 0) {
-        container.innerHTML = `
-            <div class="no-topics-notice">
-                Für das Fach <strong>${subject.title}</strong> wurden noch keine Abschnitte oder Lernzettel angelegt.<br>
-                <span style="font-size:12px; display:inline-block; margin-top:8px; color:#8E6B5A; font-style: normal;">
-                    Sobald du soweit bist, kannst du Kategorien und Themen ganz flexibel in der Datei "faecher-daten.js" ergänzen.
-                </span>
-            </div>`;
-    } else {
-        for (const [catName, topics] of categoryKeys) {
-            const block = document.createElement('div');
-            block.className = 'category-block';
-            
-            let topicsHTML = `<ul class="topic-list">`;
-            if (topics.length === 0) {
-                topicsHTML += `<li style="color:#C0A080; font-style:italic; font-size:13px;">Noch keine Themen in diesem Bereich.</li>`;
-            } else {
-                topics.forEach(topic => {
-                    topicsHTML += `<li><button class="topic-link" onclick="showTopic('${topic.path}')">${topic.name}</button></li>`;
-                });
+            if (typeof subjectData === 'undefined') {
+                alert("Fehler: Die Datei 'faecher-daten.js' konnte nicht geladen werden!");
+                return;
             }
-            topicsHTML += `</ul>`;
+
+            activeSubjectKey = subjectKey;
+            const subject = subjectData[subjectKey];
             
-            block.innerHTML = `<h3>${catName}</h3>${topicsHTML}`;
-            container.appendChild(block);
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('lernzettel-view').classList.add('hidden');
+            document.getElementById('subject-view').classList.remove('hidden');
+            
+            document.getElementById('current-subject-title').innerText = subject.title;
+            
+            const container = document.getElementById('category-container');
+            container.innerHTML = ""; 
+            
+            const categoryKeys = Object.entries(subject.categories);
+            
+            if (categoryKeys.length === 0) {
+                container.innerHTML = `
+                    <div class="no-topics-notice">
+                        Für das Fach <strong>${subject.title}</strong> wurden noch keine Abschnitte oder Lernzettel angelegt.<br>
+                        <span style="font-size:12px; display:inline-block; margin-top:8px; color:#73675C; font-style: normal;">
+                            Sobald du soweit bist, kannst du Kategorien und Themen ganz flexibel in der Datei "faecher-daten.js" ergänzen.
+                        </span>
+                    </div>`;
+            } else {
+                for (const [catName, topics] of categoryKeys) {
+                    const block = document.createElement('div');
+                    block.className = 'category-block';
+                    
+                    let topicsHTML = `<ul class="topic-list">`;
+                    if (topics.length === 0) {
+                        topicsHTML += `<li style="color:#A39687; font-style:italic; font-size:13px;">Noch keine Themen in diesem Bereich.</li>`;
+                    } else {
+                        topics.forEach(topic => {
+                            topicsHTML += `<li><button class="topic-link" onclick="showTopic('${topic.path}')">${topic.name}</button></li>`;
+                        });
+                    }
+                    topicsHTML += `</ul>`;
+                    
+                    block.innerHTML = `<h3>${catName}</h3>${topicsHTML}`;
+                    container.appendChild(block);
+                }
+            }
+            window.scrollTo(0, 0);
         }
-    }
-    window.scrollTo(0, 0);
-}
 
         function showDashboard() {
             document.getElementById('subject-view').classList.add('hidden');
@@ -178,14 +194,12 @@
                 showSubject(activeSubjectKey);
             };
             
-            // Lädt die externe HTML-Datei butterweich in das Iframe
             const contentContainer = document.getElementById('lernzettel-content');
             contentContainer.innerHTML = `<iframe id="lernzettel-frame" src="${filePath}"></iframe>`;
             
             window.scrollTo(0, 0);
         }
 
-        // Magische Druckfunktion für das Iframe-Fenster
         function printLernzettel() {
             const iframe = document.getElementById('lernzettel-frame');
             if (iframe) {
