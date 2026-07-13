@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lernzettel: Struktur- und Eigenschaftsbeziehungen</title>
     <style>
-        * { box-sizing: border-box; }
+        /* Zwingt den Drucker, alle Farben exakt wie auf dem Bildschirm zu drucken! */
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         @page { size: A4; margin: 0; }
         
-        body { background-color: #f4f1ea; color: #4A3525; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        body { background-color: #EFECE6; color: #3A342F; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
         
         /* Header Controls */
         .header-controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 30px auto 40px auto; width: 100%; flex-wrap: wrap; z-index: 100; }
-        .btn-style { background: #ffffff; border: 1.5px solid #8E6B5A; color: #8E6B5A; padding: 10px 25px; border-radius: 30px; font-family: inherit; font-size: 13px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(142,107,90,0.05); }
-        .btn-style:hover, .btn-style.active, .toc-container[open] .toc-summary { background-color: #8E6B5A; color: #ffffff; box-shadow: 0 4px 12px rgba(142,107,90,0.2); }
+        .btn-style { background: #ffffff; border: 1.5px solid #73675C; color: #73675C; padding: 10px 25px; border-radius: 30px; font-family: inherit; font-size: 13px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 8px rgba(115,103,92,0.05); }
+        .btn-style:hover, .btn-style.active, .toc-container[open] .toc-summary { background-color: #73675C; color: #ffffff; box-shadow: 0 4px 12px rgba(115,103,92,0.2); }
         
         .toc-container { position: relative; }
         .toc-summary { list-style: none; user-select: none; }
         .toc-summary::-webkit-details-marker { display: none; }
-        .toc-content { position: absolute; top: calc(100% + 15px); left: 50%; transform: translateX(-50%); background: #ffffff; border: 1.5px solid #8E6B5A; border-radius: 8px; padding: 15px; width: 280px; max-height: 60vh; overflow-y: auto; box-shadow: 0 8px 25px rgba(0,0,0,0.1); z-index: 1000; text-align: left; }
-        .toc-content a { display: block; color: #4A3525; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #f4f1ea; font-size: 13.5px; transition: color 0.2s; }
-        .toc-content a:hover { color: #C0A080; font-weight: bold; }
+        .toc-content { position: absolute; top: calc(100% + 15px); left: 50%; transform: translateX(-50%); background: #ffffff; border: 1.5px solid #73675C; border-radius: 8px; padding: 15px; width: 280px; max-height: 60vh; overflow-y: auto; box-shadow: 0 8px 25px rgba(0,0,0,0.1); z-index: 1000; text-align: left; }
+        .toc-content a { display: block; color: #3A342F; text-decoration: none; padding: 8px 0; border-bottom: 1px solid #EFECE6; font-size: 13.5px; transition: color 0.2s; }
+        .toc-content a:hover { color: #A39687; font-weight: bold; }
         
         .hidden { display: none !important; }
         
@@ -42,41 +43,39 @@
         }
         
         /* Typografie & Boxen */
-        h1 { color: #8E6B5A; font-size: 24px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0; margin-bottom: 25px; border-bottom: 2px solid #8E6B5A; padding-bottom: 8px; }
-        h2 { color: #8E6B5A; font-size: 18px; margin-top: 20px; margin-bottom: 12px; border-bottom: 1px dashed #C0A080; padding-bottom: 3px; scroll-margin-top: 40px; }
-        h3 { color: #8E6B5A; font-size: 15px; margin: 0 0 8px 0; }
-        p, li { font-size: 13.5px; line-height: 1.5; margin-top: 0; margin-bottom: 8px; color: #4A3525; }
+        h1 { color: #73675C; font-size: 24px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0; margin-bottom: 25px; border-bottom: 2px solid #73675C; padding-bottom: 8px; }
+        h2 { color: #73675C; font-size: 18px; margin-top: 20px; margin-bottom: 12px; border-bottom: 1px dashed #A39687; padding-bottom: 3px; scroll-margin-top: 40px; }
+        h3 { color: #73675C; font-size: 15px; margin: 0 0 8px 0; }
+        p, li { font-size: 13.5px; line-height: 1.5; margin-top: 0; margin-bottom: 8px; color: #3A342F; }
         ul { margin: 5px 0; padding-left: 18px; }
         .grid-2, .grid-3 { display: flex; gap: 15px; justify-content: space-between; margin-bottom: 15px; flex-wrap: wrap; }
-        .box { flex: 1; min-width: 200px; border: 1.5px solid #8E6B5A; border-radius: 6px; padding: 12px; background-color: #ffffff; }
-        .accent-box { background-color: #fdfbf7; border-left: 4px solid #C0A080; padding: 10px 12px; margin: 12px 0; border-radius: 0 4px 4px 0; }
-        .highlight { color: #C0A080; font-weight: bold; }
+        .box { flex: 1; min-width: 200px; border: 1.5px solid #73675C; border-radius: 6px; padding: 12px; background-color: #ffffff; }
+        .accent-box { background-color: #F5F3EF; border-left: 4px solid #A39687; padding: 10px 12px; margin: 12px 0; border-radius: 0 4px 4px 0; }
+        .highlight { color: #A39687; font-weight: bold; }
         
         /* REPARIERTE Interaktivität: 3D-Karteikarten */
         .flashcard { perspective: 1000px; width: 100%; height: 160px; margin: 15px 0; cursor: pointer; user-select: none; }
         .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; }
         .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
-        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; padding: 20px; border-radius: 6px; border: 1.5px solid #8E6B5A; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .flashcard-front { display: flex; align-items: center; justify-content: center; background-color: #fdfbf7; color: #8E6B5A; font-weight: bold; font-size: 15px; text-align: center; }
-        
-        /* Fix für lange Texte auf der Rückseite: Kein flex, sondern display: block */
-        .flashcard-back { display: block; background-color: #8E6B5A; color: #ffffff; transform: rotateY(180deg); font-size: 13.5px; line-height: 1.5; padding: 15px; overflow-y: auto; text-align: left; }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; padding: 20px; border-radius: 6px; border: 1.5px solid #73675C; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .flashcard-front { display: flex; align-items: center; justify-content: center; background-color: #F5F3EF; color: #73675C; font-weight: bold; font-size: 15px; text-align: center; }
+        .flashcard-back { display: block; background-color: #73675C; color: #ffffff; transform: rotateY(180deg); font-size: 13.5px; line-height: 1.5; padding: 15px; overflow-y: auto; text-align: left; }
         .flashcard-back::-webkit-scrollbar { width: 6px; }
         .flashcard-back::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 3px; }
 
         /* Akkordeons */
-        details:not(.toc-container) { border: 1.5px solid #8E6B5A; border-radius: 6px; margin: 12px 0; overflow: hidden; background: #ffffff; }
-        summary:not(.toc-summary) { padding: 12px 15px; font-weight: bold; cursor: pointer; background: #fdfbf7; color: #8E6B5A; user-select: none; }
-        summary:not(.toc-summary):hover { color: #C0A080; }
-        .details-content { padding: 15px; border-top: 1px solid #faf6f0; }
+        details:not(.toc-container) { border: 1.5px solid #73675C; border-radius: 6px; margin: 12px 0; overflow: hidden; background: #ffffff; }
+        summary:not(.toc-summary) { padding: 12px 15px; font-weight: bold; cursor: pointer; background: #F5F3EF; color: #73675C; user-select: none; }
+        summary:not(.toc-summary):hover { color: #A39687; }
+        .details-content { padding: 15px; border-top: 1px solid #EFECE6; }
+        
+        /* Tabellen-Styling (Passend zum Farbschema) */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        th, td { border: 1px solid #73675C; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background-color: #F5F3EF; color: #73675C; font-weight: bold; }
         
         /* Sauberer Seitenabschluss */
-        .page-footer { margin-top: auto; border-top: 1px solid #8E6B5A; padding-top: 8px; display: flex; justify-content: space-between; font-size: 11px; color: #8E6B5A; background: #ffffff; width: 100%; }
-
-        /* Druck-Tabellen Design für sauberes Layout */
-        .print-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 12.5px; }
-        .print-table th { background-color: #fdfbf7; color: #8E6B5A; border-bottom: 2px solid #8E6B5A; padding: 8px; text-align: left; }
-        .print-table td { border-bottom: 1px solid #faf6f0; padding: 8px; color: #4A3525; vertical-align: top; }
+        .page-footer { margin-top: auto; border-top: 1px solid #73675C; padding-top: 8px; display: flex; justify-content: space-between; font-size: 11px; color: #73675C; background: #ffffff; width: 100%; }
     </style>
 </head>
 <body>
@@ -85,189 +84,225 @@
     <details class="toc-container" id="toc-container">
         <summary class="toc-summary btn-style">☰ Inhalt</summary>
         <div class="toc-content">
-            <a href="#int-thema-1">1. Stoffeigenschaften & Identifikation</a>
-            <a href="#int-thema-2">2. Stoffgemische & Trennverfahren</a>
-            <a href="#int-thema-3">3. Wässrige Lösungen & Luft</a>
-            <a href="#int-thema-4">4. Grundlagen der Organischen Chemie</a>
+            <a href="#sec1">1. Stoffeigenschaften & Identifikation</a>
+            <a href="#sec2">2. Stoffgemische & Trennverfahren</a>
+            <a href="#sec3">3. Wässrige Lösungen & Luft</a>
+            <a href="#sec4">4. Grundlagen der Organischen Chemie</a>
         </div>
     </details>
     <button id="btn-interactive" class="btn-style active" onclick="setView('interactive')">Interaktiver Modus</button>
     <button id="btn-print" class="btn-style" onclick="setView('print')">Druck-Modus (A4)</button>
 </div>
 
-<!-- ========================================== -->
-<!-- INTERAKTIVER MODUS -->
-<!-- ========================================== -->
+<!-- ============================================== -->
+<!-- INTERAKTIVER MODUS (ONLINE-ANSICHT)            -->
+<!-- ============================================== -->
 <div id="interactive-view">
     <div class="main-content">
         <h1>Aufschrieb 1: Struktur- und Eigenschaftsbeziehungen</h1>
-        
-        <h2 id="int-thema-1">1. Stoffeigenschaften & Identifikation</h2>
-        <div class="accent-box">
-            <p><span class="highlight">Identifikationsprinzip:</span> Stoffe werden in der Chemie niemals nur an einer einzelnen Eigenschaft erkannt, sondern stets über spezifische Eigenschaftskombinationen.</p>
-        </div>
-        <p><strong>Zentrale physikalische Parameter:</strong> Dichte, Verformbarkeit, Schmelztemperatur, Siedetemperatur, Löslichkeit, elektrische Leitfähigkeit, Magnetisierbarkeit, Farbe und Geruch.</p>
-        
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">Was macht Nanopartikel besonders? (Klick mich)</div>
-                <div class="flashcard-back"><strong>Nanopartikel:</strong><br>Sie besitzen ein extrem großes Oberfläche-zu-Volumen-Verhältnis. Dadurch weisen sie oft grundlegend andere und reaktivere Eigenschaften auf als der gleiche Stoff als makroskopischer Feststoff.</div>
-            </div>
-        </div>
 
-        <p><span class="highlight">Gewinnung & Nutzung:</span> Der Weg vom Rohstoff zum Endprodukt (z. B. industrielles Kochsalz aus Sole, Eisen aus Eisenerz, Kupfer für Leitungen oder Benzin durch Erdöldestillation) muss inklusive der dabei genutzten Trennverfahren verstanden sein.</p>
-
-        <h2 id="int-thema-2">2. Stoffgemische & Trennverfahren</h2>
-        <p>Die Einteilung erfolgt nach der Sichtbarkeit der Phasen: <strong>homogen</strong> (optisch einheitlich) oder <strong>heterogen</strong> (mehrphasig/uneinheitlich). Um diese Gemische zu trennen, werden physikalische Trennverfahren genutzt (z. B. Destillation, Filtration), die auf unterschiedlichen Stoffeigenschaften basieren.</p>
-        
-        <h3>Arten von Gemischen</h3>
-        <div class="grid-3">
-            <div class="box">
-                <span class="highlight">Lösung (homogen)</span><br>
-                <em>fest/flüssig, flüssig/flüssig, gasförmig/flüssig</em><br>
-                Beispiel: Salzwasser, Mineralwasser
-            </div>
-            <div class="box">
-                <span class="highlight">Legierung (homogen)</span><br>
-                <em>fest/fest (Metalle)</em><br>
-                Beispiel: Messing, Bronze
-            </div>
-            <div class="box">
-                <span class="highlight">Suspension (heterogen)</span><br>
-                <em>fest/flüssig</em><br>
-                Beispiel: Schlammwasser
-            </div>
-            <div class="box">
-                <span class="highlight">Emulsion (heterogen)</span><br>
-                <em>flüssig/flüssig</em><br>
-                Beispiel: Milch, Öl-Wasser-Gemisch
-            </div>
-            <div class="box">
-                <span class="highlight">Rauch (heterogen)</span><br>
-                <em>fest/gasförmig</em><br>
-                Beispiel: Kaminabgas
-            </div>
-            <div class="box">
-                <span class="highlight">Nebel (heterogen)</span><br>
-                <em>flüssig/gasförmig</em><br>
-                Beispiel: Wolken
-            </div>
-        </div>
-
-        <h2 id="int-thema-3">3. Wässrige Lösungen & Luft</h2>
-        <p><span class="highlight">Elektrische Leitfähigkeit:</span> Wässrige Lösungen leiten Strom nur dann, wenn frei bewegliche Ionen vorliegen (z. B. bei gelösten Salzen, Säuren oder Laugen).</p>
-        
-        <h3>Die pH-Skala zur Einordnung</h3>
-        <div class="grid-3">
-            <div class="flashcard" onclick="this.classList.toggle('flipped')" style="height: 120px; margin: 0;">
-                <div class="flashcard-inner">
-                    <div class="flashcard-front">Sauer (pH < 7)</div>
-                    <div class="flashcard-back"><strong>Beispiele:</strong><br>Salzsäure, verdünnte Essigsäure, kohlensaure Lösung.</div>
-                </div>
-            </div>
-            <div class="flashcard" onclick="this.classList.toggle('flipped')" style="height: 120px; margin: 0;">
-                <div class="flashcard-inner">
-                    <div class="flashcard-front">Neutral (pH = 7)</div>
-                    <div class="flashcard-back"><strong>Beispiele:</strong><br>Reines Wasser, Natriumchloridlösung.</div>
-                </div>
-            </div>
-            <div class="flashcard" onclick="this.classList.toggle('flipped')" style="height: 120px; margin: 0;">
-                <div class="flashcard-inner">
-                    <div class="flashcard-front">Alkalisch (pH > 7)</div>
-                    <div class="flashcard-back"><strong>Beispiele:</strong><br>Natronlauge, Ammoniak-Lösung.</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="accent-box" style="margin-top: 20px;">
-            <p><span class="highlight">Zusammensetzung der Luft:</span> Stickstoff (N₂, ca. 78%), Sauerstoff (O₂, ca. 21%), Edelgase (ca. 1%) und Kohlenstoffdioxid (CO₂, ca. 0,04%). <em>Wichtig:</em> Veränderungen des CO₂-Anteils müssen hinsichtlich des globalen Klimas bewertet werden können.</p>
-        </div>
-
-        <h2 id="int-thema-4">4. Grundlagen der Organischen Chemie</h2>
-        <p>Ein tiefes Verständnis der Struktur-Eigenschafts-Beziehung ist hier für das Leistungsfach unabdingbar.</p>
+        <!-- THEMA 1 -->
+        <h2 id="sec1">1. Stoffeigenschaften & Identifikation</h2>
         
         <div class="grid-2">
-            <div class="box">
-                <span class="highlight">Homologe Reihe:</span><br>Eine Familie chemisch ähnlicher Verbindungen (z. B. Alkane, Alkanole), die sich strukturell jeweils nur um eine CH₂-Gruppe unterscheiden.
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Identifikationsprinzip (Klick mich!)</div>
+                    <div class="flashcard-back">Stoffe werden in der Chemie niemals nur an einer einzelnen Eigenschaft erkannt, sondern stets über spezifische Eigenschaftskombinationen.</div>
+                </div>
             </div>
-            <div class="box">
-                <span class="highlight">Merkregel Kettenlänge:</span><br>Je länger die Kohlenstoffkette, desto höher ist die Siedetemperatur (da die zwischenmolekularen Kräfte, speziell die Van-der-Waals-Kräfte, zunehmen).
+            
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Nanopartikel (Klick mich!)</div>
+                    <div class="flashcard-back">Besitzen ein extrem großes Oberfläche-zu-Volumen-Verhältnis. Dadurch weisen sie oft grundlegend andere und reaktivere Eigenschaften auf als der gleiche Stoff als makroskopischer Feststoff.</div>
+                </div>
             </div>
         </div>
 
-        <h3>Wichtige Stoffklassen (Akkordeons)</h3>
+        <div class="accent-box">
+            <span class="highlight">Zentrale physikalische Parameter:</span> Dichte, Verformbarkeit, Schmelztemperatur, Siedetemperatur, Löslichkeit, elektrische Leitfähigkeit, Magnetisierbarkeit, Farbe und Geruch.
+        </div>
+
+        <div class="box">
+            <span class="highlight">Gewinnung & Nutzung:</span> Der Weg vom Rohstoff zum Endprodukt (z. B. industrielles Kochsalz aus Sole, Eisen aus Eisenerz, Kupfer für Leitungen oder Benzin durch Erdöldestillation) muss inklusive der dabei genutzten Trennverfahren verstanden sein.
+        </div>
+
+        <!-- THEMA 2 -->
+        <h2 id="sec2">2. Stoffgemische & Trennverfahren</h2>
+        <p>Die Einteilung erfolgt nach der Sichtbarkeit der Phasen: <strong>homogen</strong> (optisch einheitlich) oder <strong>heterogen</strong> (mehrphasig/uneinheitlich). Um diese Gemische zu trennen, werden physikalische Trennverfahren genutzt (z. B. Destillation, Filtration), die auf unterschiedlichen Stoffeigenschaften basieren.</p>
+
         <details>
-            <summary>Alkane & Alkene</summary>
+            <summary>Tabelle: Übersicht der Gemischarten anzeigen</summary>
             <div class="details-content">
-                <p><strong>Beispiele:</strong> Methan, Heptan, Ethen</p>
-                <p><strong>Funktionelle Gruppe:</strong> C=C Doppelbindung (bei Alkenen)</p>
-                <p><strong>Eigenschaften & Löslichkeit:</strong> Unpolar, wasserunlöslich (hydrophob). Alkene sind reaktionsfreudiger als Alkane.</p>
+                <table>
+                    <tr>
+                        <th>Gemischart</th>
+                        <th>Phasen</th>
+                        <th>Beispiel</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Lösung</strong> (homogen)</td>
+                        <td>fest/flüssig, flüssig/flüssig, gasförmig/flüssig</td>
+                        <td>Salzwasser, Mineralwasser</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legierung</strong> (homogen)</td>
+                        <td>fest/fest (Metalle)</td>
+                        <td>Messing, Bronze</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Suspension</strong> (heterogen)</td>
+                        <td>fest/flüssig</td>
+                        <td>Schlammwasser</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emulsion</strong> (heterogen)</td>
+                        <td>flüssig/flüssig</td>
+                        <td>Milch, Öl-Wasser-Gemisch</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rauch</strong> (heterogen)</td>
+                        <td>fest/gasförmig</td>
+                        <td>Kaminabgas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nebel</strong> (heterogen)</td>
+                        <td>flüssig/gasförmig</td>
+                        <td>Wolken</td>
+                    </tr>
+                </table>
             </div>
         </details>
-        <details>
-            <summary>Alkanole</summary>
-            <div class="details-content">
-                <p><strong>Beispiele:</strong> Ethanol</p>
-                <p><strong>Funktionelle Gruppe:</strong> Hydroxygruppe (-OH)</p>
-                <p><strong>Eigenschaften & Löslichkeit:</strong> Kurzkettig sehr gut wasserlöslich (hydrophil). Langkettig zunehmend hydrophob.</p>
+
+        <!-- THEMA 3 -->
+        <h2 id="sec3">3. Wässrige Lösungen & Luft</h2>
+        
+        <div class="box">
+            <span class="highlight">Elektrische Leitfähigkeit:</span> Wässrige Lösungen leiten Strom nur dann, wenn frei bewegliche Ionen vorliegen (z. B. bei gelösten Salzen, Säuren oder Laugen).
+        </div>
+
+        <div class="accent-box">
+            <span class="highlight">Die pH-Skala:</span> Dient zur präzisen Einordnung wässriger Lösungen.
+            <ul>
+                <li><strong>Sauer (pH &lt; 7):</strong> Salzsäure, verdünnte Essigsäure, kohlensaure Lösung.</li>
+                <li><strong>Neutral (pH = 7):</strong> Reines Wasser, Natriumchloridlösung.</li>
+                <li><strong>Alkalisch (pH &gt; 7):</strong> Natronlauge, Ammoniak-Lösung.</li>
+            </ul>
+        </div>
+
+        <div class="box">
+            <span class="highlight">Zusammensetzung der Luft:</span> Stickstoff (N₂, ca. 78%), Sauerstoff (O₂, ca. 21%), Edelgase (ca. 1%) und Kohlenstoffdioxid (CO₂, ca. 0,04%).<br>
+            <strong>Wichtig:</strong> Veränderungen des CO₂-Anteils müssen hinsichtlich des globalen Klimas bewertet werden können.
+        </div>
+
+        <!-- THEMA 4 -->
+        <h2 id="sec4">4. Grundlagen der Organischen Chemie</h2>
+        <p>Ein tiefes Verständnis der Struktur-Eigenschafts-Beziehung ist hier für das Leistungsfach unabdingbar.</p>
+
+        <div class="grid-2">
+            <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">Homologe Reihe (Klick mich!)</div>
+                    <div class="flashcard-back">Eine Familie chemisch ähnlicher Verbindungen (z. B. Alkane, Alkanole), die sich strukturell jeweils nur um eine CH₂-Gruppe unterscheiden.</div>
+                </div>
             </div>
-        </details>
-        <details>
-            <summary>Alkanale / Alkanone</summary>
-            <div class="details-content">
-                <p><strong>Beispiele:</strong> Propanal, Propanon</p>
-                <p><strong>Funktionelle Gruppe:</strong> Carbonylgruppe (-C=O)</p>
-                <p><strong>Eigenschaften & Löslichkeit:</strong> Polare Gruppe. Bei kurzen Ketten gut wasserlöslich.</p>
+            
+            <div class="accent-box" style="height: 160px; margin: 15px 0;">
+                <span class="highlight">Merkregel Kettenlänge:</span><br><br>Je länger die Kohlenstoffkette, desto höher ist die Siedetemperatur (da die zwischenmolekularen Kräfte, speziell die Van-der-Waals-Kräfte, zunehmen).
             </div>
-        </details>
+        </div>
+
         <details>
-            <summary>Alkansäuren</summary>
+            <summary>Tabelle: Stoffklassen der Organischen Chemie anzeigen</summary>
             <div class="details-content">
-                <p><strong>Beispiele:</strong> Ethansäure</p>
-                <p><strong>Funktionelle Gruppe:</strong> Carboxygruppe (-COOH)</p>
-                <p><strong>Eigenschaften & Löslichkeit:</strong> Sehr polar, reagieren in wässriger Lösung sauer. Kurzkettig sehr gut löslich.</p>
-            </div>
-        </details>
-        <details>
-            <summary>Ester</summary>
-            <div class="details-content">
-                <p><strong>Beispiele:</strong> Ethansäureethylester</p>
-                <p><strong>Funktionelle Gruppe:</strong> Estergruppe (-COO-)</p>
-                <p><strong>Eigenschaften & Löslichkeit:</strong> Mäßig wasserlöslich. Sehr flüchtig, oft intensiver (fruchtiger) Geruch.</p>
-            </div>
-        </details>
-        <details>
-            <summary>Kohlenhydrate</summary>
-            <div class="details-content">
-                <p><strong>Beispiele:</strong> Glucose</p>
-                <p><strong>Funktionelle Gruppe:</strong> Mehrere -OH und eine -CHO</p>
-                <p><strong>Eigenschaften & Löslichkeit:</strong> Sehr gut wasserlöslich durch viele polare Gruppen, Feststoff.</p>
+                <table>
+                    <tr>
+                        <th>Stoffklasse</th>
+                        <th>Relevante Beispiele</th>
+                        <th>Funktionelle Gruppe</th>
+                        <th>Eigenschaften & Löslichkeit</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Alkane & Alkene</strong></td>
+                        <td>Methan, Heptan, Ethen</td>
+                        <td>C=C Doppelbindung (bei Alkenen)</td>
+                        <td>Unpolar, wasserunlöslich (hydrophob). Alkene sind reaktionsfreudiger als Alkane.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alkanole</strong></td>
+                        <td>Ethanol</td>
+                        <td>Hydroxygruppe (-OH)</td>
+                        <td>Kurzkettig sehr gut wasserlöslich (hydrophil). Langkettig zunehmend hydrophob.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alkanale / Alkanone</strong></td>
+                        <td>Propanal, Propanon</td>
+                        <td>Carbonylgruppe (-C=O)</td>
+                        <td>Polare Gruppe. Bei kurzen Ketten gut wasserlöslich.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alkansäuren</strong></td>
+                        <td>Ethansäure</td>
+                        <td>Carboxygruppe (-COOH)</td>
+                        <td>Sehr polar, reagieren in wässriger Lösung sauer. Kurzkettig sehr gut löslich.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ester</strong></td>
+                        <td>Ethansäureethylester</td>
+                        <td>Estergruppe (-COO-)</td>
+                        <td>Mäßig wasserlöslich. Sehr flüchtig, oft intensiver (fruchtiger) Geruch.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kohlenhydrate</strong></td>
+                        <td>Glucose</td>
+                        <td>Mehrere -OH und eine -CHO</td>
+                        <td>Sehr gut wasserlöslich durch viele polare Gruppen, Feststoff.</td>
+                    </tr>
+                </table>
             </div>
         </details>
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- DRUCK-MODUS (A4) - Striktes Layout -->
-<!-- ========================================== -->
+<!-- ============================================== -->
+<!-- DRUCK-MODUS (A4-ANSICHT)                       -->
+<!-- ============================================== -->
 <div id="print-view" class="hidden">
     
-    <!-- SEITE 1: Eigenschaften & Gemische -->
+    <!-- SEITE 1 -->
     <div class="page">
-        <h1>Aufschrieb 1: Struktur- und Eigenschaften</h1>
-        
+        <h1>Aufschrieb 1: Struktur- und Eigenschaftsbeziehungen</h1>
         <h2>1. Stoffeigenschaften & Identifikation</h2>
-        <div class="accent-box">
-            <p><strong>Identifikationsprinzip:</strong> Stoffe werden in der Chemie niemals nur an einer einzelnen Eigenschaft erkannt, sondern stets über spezifische Eigenschaftskombinationen.</p>
-        </div>
-        <p><strong>Zentrale physikalische Parameter:</strong> Dichte, Verformbarkeit, Schmelztemperatur, Siedetemperatur, Löslichkeit, elektrische Leitfähigkeit, Magnetisierbarkeit, Farbe und Geruch.</p>
-        <p><strong>Nanopartikel:</strong> Besitzen ein extrem großes Oberfläche-zu-Volumen-Verhältnis. Dadurch weisen sie oft grundlegend andere und reaktivere Eigenschaften auf als der gleiche Stoff als makroskopischer Feststoff.</p>
-        <p><strong>Gewinnung & Nutzung:</strong> Der Weg vom Rohstoff zum Endprodukt (z. B. industrielles Kochsalz aus Sole, Eisen aus Eisenerz, Kupfer für Leitungen oder Benzin durch Erdöldestillation) muss inklusive der dabei genutzten Trennverfahren verstanden sein.</p>
-
-        <h2>2. Stoffgemische & Trennverfahren</h2>
-        <p>Die Einteilung erfolgt nach Sichtbarkeit der Phasen: <strong>homogen</strong> (optisch einheitlich) oder <strong>heterogen</strong> (mehrphasig/uneinheitlich). Trennung durch physikalische Trennverfahren (z.B. Destillation, Filtration) aufgrund unterschiedlicher Stoffeigenschaften.</p>
         
-        <table class="print-table">
+        <div class="box" style="margin-bottom: 15px;">
+            <h3>Identifikationsprinzip</h3>
+            <p>Stoffe werden in der Chemie niemals nur an einer einzelnen Eigenschaft erkannt, sondern stets über spezifische Eigenschaftskombinationen.</p>
+        </div>
+        
+        <div class="accent-box" style="margin-bottom: 15px;">
+            <span class="highlight">Zentrale physikalische Parameter:</span> Dichte, Verformbarkeit, Schmelztemperatur, Siedetemperatur, Löslichkeit, elektrische Leitfähigkeit, Magnetisierbarkeit, Farbe und Geruch.
+        </div>
+        
+        <div class="box" style="margin-bottom: 15px;">
+            <h3>Nanopartikel</h3>
+            <p>Besitzen ein extrem großes Oberfläche-zu-Volumen-Verhältnis. Dadurch weisen sie oft grundlegend andere und reaktivere Eigenschaften auf als der gleiche Stoff als makroskopischer Feststoff.</p>
+        </div>
+        
+        <div class="box" style="margin-bottom: 15px;">
+            <span class="highlight">Gewinnung & Nutzung:</span> Der Weg vom Rohstoff zum Endprodukt (z. B. industrielles Kochsalz aus Sole, Eisen aus Eisenerz, Kupfer für Leitungen oder Benzin durch Erdöldestillation) muss inklusive der dabei genutzten Trennverfahren verstanden sein.
+        </div>
+        
+        <!-- FOOTER SEITE 1 -->
+        <div class="page-footer"><span>Chemie / Struktur- und Eigenschaftsbeziehungen</span><span>Olga Völzke</span><span>Seite 1</span></div>
+    </div>
+
+    <!-- SEITE 2 -->
+    <div class="page">
+        <h2>2. Stoffgemische & Trennverfahren</h2>
+        <p>Die Einteilung erfolgt nach der Sichtbarkeit der Phasen: <strong>homogen</strong> (optisch einheitlich) oder <strong>heterogen</strong> (mehrphasig/uneinheitlich). Um diese Gemische zu trennen, werden physikalische Trennverfahren genutzt (z. B. Destillation, Filtration), die auf unterschiedlichen Stoffeigenschaften basieren.</p>
+        
+        <table>
             <tr>
                 <th>Gemischart</th>
                 <th>Phasen</th>
@@ -275,7 +310,7 @@
             </tr>
             <tr>
                 <td><strong>Lösung</strong> (homogen)</td>
-                <td>fest/flüssig, flüssig/flüssig, gasf./flüssig</td>
+                <td>fest/flüssig, flüssig/flüssig, gasförmig/flüssig</td>
                 <td>Salzwasser, Mineralwasser</td>
             </tr>
             <tr>
@@ -305,60 +340,64 @@
             </tr>
         </table>
         
-        <div class="page-footer"><span>Chemie / Struktur & Eigenschaften</span><span>Olga Völzke</span><span>Seite 1</span></div>
+        <!-- FOOTER SEITE 2 -->
+        <div class="page-footer"><span>Chemie / Struktur- und Eigenschaftsbeziehungen</span><span>Olga Völzke</span><span>Seite 2</span></div>
     </div>
 
-    <!-- SEITE 2: Wässrige Lösungen & Luft -->
+    <!-- SEITE 3 -->
     <div class="page">
         <h2>3. Wässrige Lösungen & Luft</h2>
-        <p><strong>Elektrische Leitfähigkeit:</strong> Wässrige Lösungen leiten Strom nur dann, wenn frei bewegliche Ionen vorliegen (z. B. bei gelösten Salzen, Säuren oder Laugen).</p>
         
-        <h3>Die pH-Skala</h3>
-        <div class="grid-3">
-            <div class="box">
-                <span class="highlight">Sauer (pH < 7)</span><br>
-                Salzsäure, verdünnte Essigsäure, kohlensaure Lösung.
-            </div>
-            <div class="box">
-                <span class="highlight">Neutral (pH = 7)</span><br>
-                Reines Wasser, Natriumchloridlösung.
-            </div>
-            <div class="box">
-                <span class="highlight">Alkalisch (pH > 7)</span><br>
-                Natronlauge, Ammoniak-Lösung.
-            </div>
-        </div>
-
-        <div class="accent-box">
-            <p><strong>Zusammensetzung der Luft:</strong><br>
-            Stickstoff (N₂, ca. 78%), Sauerstoff (O₂, ca. 21%), Edelgase (ca. 1%) und Kohlenstoffdioxid (CO₂, ca. 0,04%).<br> 
-            <em>Wichtig:</em> Veränderungen des CO₂-Anteils müssen hinsichtlich des globalen Klimas bewertet werden können.</p>
+        <div class="box" style="margin-bottom: 15px;">
+            <span class="highlight">Elektrische Leitfähigkeit:</span> Wässrige Lösungen leiten Strom nur dann, wenn frei bewegliche Ionen vorliegen (z. B. bei gelösten Salzen, Säuren oder Laugen).
         </div>
         
-        <div class="page-footer"><span>Chemie / Lösungen & Luft</span><span>Olga Völzke</span><span>Seite 2</span></div>
+        <div class="accent-box" style="margin-bottom: 15px;">
+            <h3>Die pH-Skala</h3>
+            <p>Dient zur präzisen Einordnung wässriger Lösungen.</p>
+            <ul>
+                <li><strong>Sauer (pH &lt; 7):</strong> Salzsäure, verdünnte Essigsäure, kohlensaure Lösung.</li>
+                <li><strong>Neutral (pH = 7):</strong> Reines Wasser, Natriumchloridlösung.</li>
+                <li><strong>Alkalisch (pH &gt; 7):</strong> Natronlauge, Ammoniak-Lösung.</li>
+            </ul>
+        </div>
+        
+        <div class="box" style="margin-bottom: 15px;">
+            <span class="highlight">Zusammensetzung der Luft:</span> Stickstoff (N₂, ca. 78%), Sauerstoff (O₂, ca. 21%), Edelgase (ca. 1%) und Kohlenstoffdioxid (CO₂, ca. 0,04%).<br><br>
+            <strong>Wichtig:</strong> Veränderungen des CO₂-Anteils müssen hinsichtlich des globalen Klimas bewertet werden können.
+        </div>
+        
+        <!-- FOOTER SEITE 3 -->
+        <div class="page-footer"><span>Chemie / Struktur- und Eigenschaftsbeziehungen</span><span>Olga Völzke</span><span>Seite 3</span></div>
     </div>
 
-    <!-- SEITE 3: Organische Chemie -->
+    <!-- SEITE 4 -->
     <div class="page">
         <h2>4. Grundlagen der Organischen Chemie</h2>
         <p>Ein tiefes Verständnis der Struktur-Eigenschafts-Beziehung ist hier für das Leistungsfach unabdingbar.</p>
         
-        <div class="grid-2">
-            <div class="box">
-                <span class="highlight">Homologe Reihe:</span><br>
-                Eine Familie chemisch ähnlicher Verbindungen (z. B. Alkane, Alkanole), die sich strukturell jeweils nur um eine CH₂-Gruppe unterscheiden.
-            </div>
-            <div class="box">
-                <span class="highlight">Merkregel Kettenlänge:</span><br>
-                Je länger die Kohlenstoffkette, desto höher ist die Siedetemperatur (da die zwischenmolekularen Van-der-Waals-Kräfte zunehmen).
-            </div>
+        <div class="box" style="margin-bottom: 15px;">
+            <h3>Homologe Reihe</h3>
+            <p>Eine Familie chemisch ähnlicher Verbindungen (z. B. Alkane, Alkanole), die sich strukturell jeweils nur um eine CH₂-Gruppe unterscheiden.</p>
         </div>
+        
+        <div class="accent-box" style="margin-bottom: 15px;">
+            <span class="highlight">Merkregel Kettenlänge:</span><br>
+            Je länger die Kohlenstoffkette, desto höher ist die Siedetemperatur (da die zwischenmolekularen Kräfte, speziell die Van-der-Waals-Kräfte, zunehmen).
+        </div>
+        
+        <!-- FOOTER SEITE 4 -->
+        <div class="page-footer"><span>Chemie / Struktur- und Eigenschaftsbeziehungen</span><span>Olga Völzke</span><span>Seite 4</span></div>
+    </div>
 
-        <h3>Wichtige Stoffklassen im Überblick</h3>
-        <table class="print-table">
+    <!-- SEITE 5 -->
+    <div class="page">
+        <h3>Stoffklassen der Organischen Chemie (Übersicht)</h3>
+        
+        <table>
             <tr>
                 <th>Stoffklasse</th>
-                <th>Beispiele</th>
+                <th>Relevante Beispiele</th>
                 <th>Funktionelle Gruppe</th>
                 <th>Eigenschaften & Löslichkeit</th>
             </tr>
@@ -400,7 +439,8 @@
             </tr>
         </table>
         
-        <div class="page-footer"><span>Chemie / Organische Chemie</span><span>Olga Völzke</span><span>Seite 3</span></div>
+        <!-- FOOTER SEITE 5 -->
+        <div class="page-footer"><span>Chemie / Struktur- und Eigenschaftsbeziehungen</span><span>Olga Völzke</span><span>Seite 5</span></div>
     </div>
 
 </div>
